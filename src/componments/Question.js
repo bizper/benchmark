@@ -1,8 +1,15 @@
 import { Col, Row, Alert, Space } from 'antd'
+import { forwardRef, useImperativeHandle } from 'react'
 
-const Question = (props) => {
+const Question = (props, ref) => {
 
     let getScore = props.getScore ? props.getScore : () => { return 0 }
+
+    useImperativeHandle(ref, () => {
+        return {
+            getScore
+        }
+    })
 
     let options = props.options
 
@@ -26,4 +33,4 @@ const Question = (props) => {
 
 }
 
-export default Question
+export default forwardRef(Question)

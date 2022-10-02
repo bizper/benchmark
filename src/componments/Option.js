@@ -6,7 +6,7 @@ const Option = (props) => {
     let type = props.type
 
     const onChange = (e) => {
-        props.onChange(props.optionId, e.target.value)
+        props.setValue(e.target.value)
     }
 
     let option = []
