@@ -2,7 +2,8 @@ const OptionType = {
 
     INPUT: 'input',
     RADIO: 'radio',
-    CHECKBOX: 'checkbox'
+    CHECKBOX: 'checkbox',
+    INPUTNUMBER: "inputnumber"
 
 }
 

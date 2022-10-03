@@ -1,18 +1,37 @@
-import { Input, Checkbox, Radio, Space, Alert } from "antd"
+import { Input, Checkbox, Radio, Space, Alert, InputNumber, Typography } from "antd"
 import OptionType from "../constant/OptionType"
 
 const Option = (props) => {
 
     let type = props.type
 
+    let pos = props.pos
+
     const onChange = (e) => {
-        props.setValue(e.target.value)
+        if(type === OptionType.CHECKBOX) {
+            if(pos !== undefined) {
+                props.setValue(pos, e.target.checked)
+            } else {
+                props.setValue(e.target.checked)
+            }
+        } else {
+            if(pos !== undefined) {
+                props.setValue(pos, e.target.value)
+            } else {
+                props.setValue(e.target.value)
+            }
+            
+        }
     }
 
     let option = []
 
     if (type === OptionType.INPUT) {
         option.push(<Input bordered={false} prefix={props.prefix} placeholder={props.placeholder} suffix={props.suffix} onChange={onChange}></Input>)
+    }
+
+    if (type === OptionType.INPUTNUMBER) {
+        option.push(<InputNumber bordered={false} prefix={props.prefix} placeholder={props.placeholder} suffix={props.suffix} onChange={onChange}></InputNumber>)
     }
 
     if (type === OptionType.RADIO) {
@@ -43,6 +62,10 @@ const Option = (props) => {
 
     if (props.tips) {
         option.push(<Alert message={props.tips} type="info" />)
+    }
+
+    if(props.subtitle) {
+        option.unshift(<Typography.Title level={5}>{props.subtitle}</Typography.Title>)
     }
 
     return option
