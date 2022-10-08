@@ -5,8 +5,7 @@ import { UserOutlined } from '@ant-design/icons'
 import { TESTS, getCLB } from "../constant/LanguageTest"
 import Option from "../componments/Option"
 import { useState, useEffect, useRef } from "react"
-import Page from "./Page"
-import { Radio } from "antd"
+import { Radio, Row, Col, Statistic } from "antd"
 
 
 
@@ -187,7 +186,16 @@ const FSW = () => {
         <Group key="b" title="B. 附加分 Addtional points" additional="满分10分" questions={[addition_questions]}></Group>
     ]
 
-    return <Page data={groups} getTotal={score}></Page>
+    return (
+        <div>
+            <Row>
+                <Col span={12} offset={6}>{groups}</Col>
+            </Row>
+            <Row>
+                <Col span={12} offset={12}><Statistic title="总分" value={score} /></Col>
+            </Row>
+        </div>
+    )
 
 }
 
